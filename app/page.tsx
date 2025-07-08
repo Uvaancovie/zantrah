@@ -19,9 +19,11 @@ import {
 import AuthPopup from "@/components/auth/auth-popup"
 import Navbar from "@/components/layout/navbar"
 import { useProfile } from "@/hooks/use-profile"
+import { useLanguage } from "@/context/LanguageContext"
 
 export default function Home() {
   const { hasProfile, profile } = useProfile()
+  const { t } = useLanguage()
   const [profilePopup, setProfilePopup] = useState<{ isOpen: boolean; redirectTo?: string }>({
     isOpen: false,
   })
@@ -41,7 +43,7 @@ export default function Home() {
       name: "Handwoven Kente Cloth",
       price: "R450",
       originalPrice: "R600",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1594736797933-d0fccafcce89?w=300&h=300&fit=crop&crop=center",
       vendor: "Akosua Textiles",
       location: "Ghana",
       rating: 4.8,
@@ -53,7 +55,7 @@ export default function Home() {
       name: "Organic Argan Oil",
       price: "R280",
       originalPrice: "R350",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=300&h=300&fit=crop&crop=center",
       vendor: "Atlas Beauty",
       location: "Morocco",
       rating: 4.9,
@@ -65,7 +67,7 @@ export default function Home() {
       name: "Maasai Beaded Jewelry",
       price: "R320",
       originalPrice: null,
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop&crop=center",
       vendor: "Nairobi Crafts",
       location: "Kenya",
       rating: 4.7,
@@ -77,7 +79,7 @@ export default function Home() {
       name: "Ethiopian Coffee Beans",
       price: "R180",
       originalPrice: "R220",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=300&fit=crop&crop=center",
       vendor: "Highland Roasters",
       location: "Ethiopia",
       rating: 4.9,
@@ -89,7 +91,7 @@ export default function Home() {
       name: "Baobab Skincare Set",
       price: "R520",
       originalPrice: "R680",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop&crop=center",
       vendor: "Savanna Naturals",
       location: "South Africa",
       rating: 4.6,
@@ -101,7 +103,7 @@ export default function Home() {
       name: "Ankara Print Dress",
       price: "R380",
       originalPrice: null,
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=300&h=300&fit=crop&crop=center",
       vendor: "Lagos Fashion",
       location: "Nigeria",
       rating: 4.8,
@@ -120,17 +122,16 @@ export default function Home() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/10 text-orange-500 text-sm font-medium mb-8 border border-orange-500/20">
               <Globe className="w-4 h-4 mr-2" />
-              Connecting Africa & the Middle East
+              {t('hero.connecting')}
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Discover Amazing
-              <span className="block text-orange-500">African Products</span>
+              {t('hero.title')}
+              <span className="block text-orange-500">{t('hero.titleHighlight')}</span>
             </h1>
 
             <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              From handcrafted textiles to organic beauty products - shop authentic items from verified vendors across
-              Africa and the Middle East.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
@@ -141,7 +142,7 @@ export default function Home() {
                 className="group bg-orange-500 text-black px-8 py-4 rounded-xl text-lg font-bold hover:bg-orange-400 transition-all duration-200 flex items-center shadow-lg hover:shadow-xl"
               >
                 <ShoppingCart className="mr-2 w-5 h-5" />
-                Shop Now
+                {t('hero.shopNow')}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -150,7 +151,7 @@ export default function Home() {
                 className="group border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-xl text-lg font-bold hover:bg-orange-500 hover:text-black transition-all"
               >
                 <Store className="mr-2 w-5 h-5" />
-                Start Selling
+                {t('hero.sellWithUs')}
               </button>
             </div>
           </div>
@@ -167,7 +168,7 @@ export default function Home() {
               >
                 <div className="relative">
                   <img
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop&crop=center"}
                     alt={product.name}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />

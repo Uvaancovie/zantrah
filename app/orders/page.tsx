@@ -31,7 +31,7 @@ export default function OrdersPage() {
         price: "R450",
         status: "delivered",
         date: "2024-01-15",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://images.unsplash.com/photo-1594736797933-d0fccafcce89?w=100&h=100&fit=crop&crop=center",
       },
       {
         id: "ORD-002",
@@ -40,7 +40,7 @@ export default function OrdersPage() {
         price: "R280",
         status: "shipped",
         date: "2024-01-18",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=100&h=100&fit=crop&crop=center",
       },
       {
         id: "ORD-003",
@@ -49,7 +49,7 @@ export default function OrdersPage() {
         price: "R180",
         status: "pending",
         date: "2024-01-20",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=100&h=100&fit=crop&crop=center",
       },
     ])
   }, [])
@@ -104,7 +104,7 @@ export default function OrdersPage() {
                 <div className="flex flex-col md:flex-row md:items-center justify-between">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
                     <img
-                      src={order.image || "/placeholder.svg"}
+                      src={order.image || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=center"}
                       alt={order.productName}
                       className="w-16 h-16 object-cover rounded-lg"
                     />

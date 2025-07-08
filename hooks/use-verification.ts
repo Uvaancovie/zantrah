@@ -29,8 +29,8 @@ export function useVerification() {
     age: 30,
     nationality: 'South African',
     id_number: 'ABC123456789',
-    id_document_url: '/placeholder.jpg',
-    proof_of_address_url: '/placeholder.jpg',
+    id_document_url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center',
+    proof_of_address_url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center',
     status: 'approved',
     video_call_scheduled_at: null,
     video_call_completed_at: null,
@@ -41,7 +41,7 @@ export function useVerification() {
   
   const uploadFile = async (file: File, folder: string): Promise<string> => {
     console.log(`Upload file called with ${file.name} to ${folder} - this is a no-op in demo mode`)
-    return '/placeholder.jpg'
+    return 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center'
   }
   
   const sendVerificationEmail = async (verificationData: any) => {

@@ -201,7 +201,7 @@ export default function AddProductPage() {
                     {formData.images.map((image, index) => (
                       <div key={index} className="relative">
                         <img
-                          src={URL.createObjectURL(image) || "/placeholder.svg"}
+                          src={URL.createObjectURL(image) || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=center"}
                           alt={`Preview ${index + 1}`}
                           className="w-full h-24 object-cover rounded-lg"
                         />

@@ -44,7 +44,7 @@ export default function MarketplacePage() {
       name: "Handwoven Kente Cloth",
       price: "R450",
       originalPrice: "R600",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1594736797933-d0fccafcce89?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Akosua Textiles",
         location: "Accra, Ghana",
@@ -62,7 +62,7 @@ export default function MarketplacePage() {
       name: "Organic Argan Oil",
       price: "R280",
       originalPrice: "R350",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Atlas Beauty",
         location: "Marrakech, Morocco",
@@ -79,7 +79,7 @@ export default function MarketplacePage() {
       id: 3,
       name: "Maasai Beaded Jewelry",
       price: "R320",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Nairobi Crafts",
         location: "Nairobi, Kenya",
@@ -97,7 +97,7 @@ export default function MarketplacePage() {
       name: "Ethiopian Coffee Beans",
       price: "R180",
       originalPrice: "R220",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Highland Roasters",
         location: "Addis Ababa, Ethiopia",
@@ -115,7 +115,7 @@ export default function MarketplacePage() {
       name: "Baobab Skincare Set",
       price: "R520",
       originalPrice: "R680",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Savanna Naturals",
         location: "Cape Town, South Africa",
@@ -132,7 +132,7 @@ export default function MarketplacePage() {
       id: 6,
       name: "Ankara Print Dress",
       price: "R380",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Lagos Fashion",
         location: "Lagos, Nigeria",
@@ -149,7 +149,7 @@ export default function MarketplacePage() {
       id: 7,
       name: "Moroccan Tagine Pot",
       price: "R450",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Fez Pottery",
         location: "Fez, Morocco",
@@ -166,7 +166,7 @@ export default function MarketplacePage() {
       id: 8,
       name: "Shea Butter Soap",
       price: "R85",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop&crop=center",
       vendor: {
         name: "Burkina Naturals",
         location: "Ouagadougou, Burkina Faso",
@@ -255,7 +255,7 @@ export default function MarketplacePage() {
               >
                 <div className="relative">
                   <img
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop&crop=center"}
                     alt={product.name}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
