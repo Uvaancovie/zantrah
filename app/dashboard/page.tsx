@@ -18,22 +18,11 @@ interface Product {
 }
 
 export default function DashboardPage() {
-  const { profile, hasProfile } = useProfile()
+  const { profile } = useProfile()
   const router = useRouter()
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    if (!hasProfile) {
-      router.push("/")
-      return
-    }
-
-    const isVendor = profile?.role && ["small_business", "entrepreneur", "corporation"].includes(profile.role)
-    if (!isVendor) {
-      router.push("/marketplace")
-      return
-    }
-
     // Load mock products for demo
     setProducts([
       {
@@ -64,7 +53,7 @@ export default function DashboardPage() {
         inquiries: 1,
       },
     ])
-  }, [profile, hasProfile, router])
+  }, [])
 
   const stats = [
     {
@@ -92,10 +81,6 @@ export default function DashboardPage() {
       color: "bg-purple-500",
     },
   ]
-
-  if (!hasProfile) {
-    return null
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">

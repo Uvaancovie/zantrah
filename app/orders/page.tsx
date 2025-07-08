@@ -17,16 +17,11 @@ interface Order {
 }
 
 export default function OrdersPage() {
-  const { profile, hasProfile } = useProfile()
+  const { profile } = useProfile()
   const router = useRouter()
   const [orders, setOrders] = useState<Order[]>([])
 
   useEffect(() => {
-    if (!hasProfile) {
-      router.push("/")
-      return
-    }
-
     // Mock orders data
     setOrders([
       {
@@ -57,7 +52,7 @@ export default function OrdersPage() {
         image: "/placeholder.svg?height=100&width=100",
       },
     ])
-  }, [hasProfile, router])
+  }, [])
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -91,10 +86,6 @@ export default function OrdersPage() {
       default:
         return "bg-gray-100 text-gray-800"
     }
-  }
-
-  if (!hasProfile) {
-    return null
   }
 
   return (

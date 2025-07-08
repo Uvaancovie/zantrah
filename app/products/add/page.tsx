@@ -37,17 +37,9 @@ export default function AddProductPage() {
   ]
 
   useEffect(() => {
-    if (!hasProfile) {
-      router.push("/")
-      return
-    }
-
-    const isVendor = profile?.role && ["small_business", "entrepreneur", "corporation"].includes(profile.role)
-    if (!isVendor) {
-      router.push("/marketplace")
-      return
-    }
-  }, [profile, hasProfile, router])
+    // No auth check needed in demo mode
+    console.log('Add product page loaded in demo mode')
+  }, [])
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
@@ -92,10 +84,6 @@ export default function AddProductPage() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  if (!hasProfile) {
-    return null
   }
 
   return (

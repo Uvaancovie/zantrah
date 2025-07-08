@@ -41,11 +41,7 @@ export default function ProfilePage() {
   ]
 
   useEffect(() => {
-    if (!hasProfile) {
-      router.push("/")
-      return
-    }
-
+    // Load profile data in demo mode
     if (profile) {
       setFormData({
         firstName: profile.first_name || "",
@@ -56,7 +52,7 @@ export default function ProfilePage() {
         role: profile.role || "",
       })
     }
-  }, [profile, hasProfile, router])
+  }, []) // Remove dependencies to prevent infinite loop
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -106,10 +102,6 @@ export default function ProfilePage() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  if (!hasProfile) {
-    return null
   }
 
   return (

@@ -1,7 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
-
 interface UserProfile {
   id: string
   firstName: string
@@ -13,49 +11,34 @@ interface UserProfile {
   isVerified: boolean
 }
 
+// This is a stubbed version of useAuth that always returns an authenticated user
 export function useAuth() {
-  const [user, setUser] = useState<UserProfile | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    // Get user data from localStorage
-    const userData = localStorage.getItem("zantra_user_data")
-    if (userData) {
-      try {
-        const parsedUser = JSON.parse(userData)
-        setUser(parsedUser)
-      } catch (error) {
-        console.error("Error parsing user data:", error)
-        localStorage.removeItem("zantra_user_data")
-        localStorage.removeItem("zantra_profile_id")
-      }
-    }
-    setLoading(false)
-  }, [])
-
-  const signOut = () => {
-    localStorage.removeItem("zantra_user_data")
-    localStorage.removeItem("zantra_profile_id")
-    setUser(null)
-    window.location.href = "/"
+  const dummyUser: UserProfile = { 
+    id: '1', 
+    firstName: 'Demo', 
+    lastName: 'User',
+    email: 'demo@zantra.com',
+    country: 'South Africa',
+    phone: '+27123456789',
+    role: 'admin', 
+    isVerified: true 
   }
-
-  const updateUser = (userData: Partial<UserProfile>) => {
-    if (user) {
-      const updatedUser = { ...user, ...userData }
-      setUser(updatedUser)
-      localStorage.setItem("zantra_user_data", JSON.stringify(updatedUser))
+  
+  // Return a dummy user with all necessary properties and methods
+  return { 
+    user: dummyUser, 
+    profile: dummyUser, 
+    loading: false, 
+    isAuthenticated: true, 
+    isVerified: true,
+    userRole: dummyUser.role,
+    signOut: () => {
+      console.log('Sign out clicked - this is a no-op in demo mode')
+      // In demo mode, don't actually sign out
+    },
+    updateUser: () => {
+      console.log('Update user called - this is a no-op in demo mode')
+      // In demo mode, don't actually update
     }
-  }
-
-  return {
-    user,
-    profile: user, // For compatibility
-    loading,
-    signOut,
-    updateUser,
-    isAuthenticated: !!user,
-    isVerified: user?.isVerified ?? false,
-    userRole: user?.role,
   }
 }
