@@ -25,15 +25,47 @@ const translations = {
     'nav.signOut': 'Sign Out',
     'nav.joinZantra': 'Join Zantra',
     
-    // Main page
-    'hero.connecting': 'Connecting Africa & the Middle East',
-    'hero.title': 'Discover Amazing',
-    'hero.titleHighlight': 'African Products',
-    'hero.subtitle': 'From handcrafted textiles to organic beauty products - shop authentic items from verified vendors across Africa and the Middle East.',
-    'hero.shopNow': 'Shop Now',
-    'hero.sellWithUs': 'Start Selling',
+    // Hero Section
+    'hero.title': "Africa's Premier Digital Marketplace",
+    'hero.subtitle': 'Buy. Sell. Hire. Learn. The Digital Marketplace for Africa.',
+    'hero.description': 'From handcrafted textiles to organic beauty products - shop authentic items from verified vendors across Africa and the Middle East.',
     'hero.getStarted': 'Get Started',
     'hero.exploreMarketplace': 'Explore Marketplace',
+    'hero.connecting': 'Connecting Africa & the Middle East',
+    'hero.shopNow': 'Shop Now',
+    'hero.sellWithUs': 'Start Selling',
+    'hero.titleHighlight': 'African Products',
+    
+    // Core Ecosystem Blocks
+    'ecosystem.work.title': 'Work',
+    'ecosystem.work.subtitle': 'Hire Freelancers',
+    'ecosystem.work.description': 'Find skilled professionals for your projects across Africa and the Middle East',
+    'ecosystem.products.title': 'Products',
+    'ecosystem.products.subtitle': 'Shop Amazing Items',
+    'ecosystem.products.description': 'Discover authentic African products from verified vendors',
+    'ecosystem.network.title': 'Network',
+    'ecosystem.network.subtitle': 'Business Connections',
+    'ecosystem.network.description': 'Connect with traders, distributors, and business partners',
+    'ecosystem.learn.title': 'Learn',
+    'ecosystem.learn.subtitle': 'Grow Your Skills',
+    'ecosystem.learn.description': 'Access micro-courses and educational content',
+    
+    // User Types
+    'userTypes.buyer': 'Buyer',
+    'userTypes.seller': 'Seller',
+    'userTypes.freelancer': 'Freelancer',
+    'userTypes.client': 'Client',
+    'userTypes.producer': 'Producer',
+    'userTypes.distributor': 'Distributor',
+    'userTypes.learner': 'Learner',
+    'userTypes.educator': 'Educator',
+    
+    // Trust & Security
+    'trust.verified': 'Verified',
+    'trust.sslSecured': 'SSL Secured',
+    'trust.trustedVendor': 'Trusted Vendor',
+    'trust.verifiedSeller': 'Verified Seller',
+    'trust.verifiedUser': 'Verified User',
     
     // Products
     'products.featured': 'Featured Products',
@@ -78,15 +110,51 @@ const translations = {
     'nav.signOut': 'تسجيل الخروج',
     'nav.joinZantra': 'انضم لزانترا',
     
-    // Main page
-    'hero.connecting': 'ربط أفريقيا والشرق الأوسط',
-    'hero.title': 'اكتشف منتجات',
-    'hero.titleHighlight': 'أفريقية مذهلة',
-    'hero.subtitle': 'من المنسوجات المصنوعة يدوياً إلى منتجات التجميل العضوية - تسوق من عناصر أصيلة من بائعين معتمدين عبر أفريقيا والشرق الأوسط.',
-    'hero.shopNow': 'تسوق الآن',
-    'hero.sellWithUs': 'ابدأ البيع',
+    // Hero Section
+    'hero.title': 'السوق الرقمي الرائد في أفريقيا',
+    'hero.subtitle': 'اشترِ. بِع. استأجر. تعلّم. السوق الرقمي لأفريقيا.',
+    'hero.description': 'من المنسوجات المصنوعة يدوياً إلى منتجات التجميل العضوية - تسوق من عناصر أصيلة من بائعين معتمدين عبر أفريقيا والشرق الأوسط.',
     'hero.getStarted': 'ابدأ الآن',
     'hero.exploreMarketplace': 'استكشف السوق',
+    'hero.connecting': 'ربط أفريقيا والشرق الأوسط',
+    'hero.shopNow': 'تسوق الآن',
+    'hero.sellWithUs': 'ابدأ البيع',
+    
+    // Core Ecosystem Blocks
+    'ecosystem.work.title': 'العمل',
+    'ecosystem.work.subtitle': 'توظيف المستقلين',
+    'ecosystem.work.description': 'ابحث عن محترفين مهرة لمشاريعك عبر أفريقيا والشرق الأوسط',
+    'ecosystem.products.title': 'المنتجات',
+    'ecosystem.products.subtitle': 'تسوق عناصر مذهلة',
+    'ecosystem.products.description': 'اكتشف المنتجات الأفريقية الأصيلة من بائعين موثوقين',
+    'ecosystem.network.title': 'الشبكة',
+    'ecosystem.network.subtitle': 'اتصالات الأعمال',
+    'ecosystem.network.description': 'تواصل مع التجار والموزعين وشركاء الأعمال',
+    'ecosystem.learn.title': 'تعلم',
+    'ecosystem.learn.subtitle': 'طور مهاراتك',
+    'ecosystem.learn.description': 'الوصول إلى الدورات التعليمية والمحتوى التعليمي',
+    
+    // User Types
+    'userTypes.buyer': 'مشتري',
+    'userTypes.seller': 'بائع',
+    'userTypes.freelancer': 'مستقل',
+    'userTypes.client': 'عميل',
+    'userTypes.producer': 'منتج',
+    'userTypes.distributor': 'موزع',
+    'userTypes.learner': 'متعلم',
+    'userTypes.educator': 'معلم',
+    
+    // Trust & Security
+    'trust.verified': 'موثوق',
+    'trust.sslSecured': 'مؤمن بواسطة SSL',
+    'trust.trustedVendor': 'بائع موثوق',
+    'trust.verifiedSeller': 'بائع موثوق',
+    'trust.verifiedUser': 'مستخدم موثوق',
+    
+    // Main page
+    'hero.titleHighlight': 'أفريقية مذهلة',
+    'hero.description2': 'من المنسوجات المصنوعة يدوياً إلى منتجات التجميل العضوية - تسوق من عناصر أصيلة من بائعين معتمدين عبر أفريقيا والشرق الأوسط.',
+    // Note: hero.shopNow, hero.sellWithUs, and hero.getStarted are already defined above
     
     // Products
     'products.featured': 'المنتجات المميزة',
@@ -131,15 +199,52 @@ const translations = {
     'nav.signOut': 'Se déconnecter',
     'nav.joinZantra': 'Rejoindre Zantra',
     
-    // Main page
-    'hero.connecting': 'Connecter l\'Afrique et le Moyen-Orient',
-    'hero.title': 'Découvrez d\'incroyables',
-    'hero.titleHighlight': 'Produits Africains',
-    'hero.subtitle': 'Des textiles artisanaux aux produits de beauté biologiques - achetez des articles authentiques de vendeurs vérifiés à travers l\'Afrique et le Moyen-Orient.',
-    'hero.shopNow': 'Acheter Maintenant',
-    'hero.sellWithUs': 'Commencer à Vendre',
+    // Hero Section
+    'hero.title': 'Le marché numérique de premier plan en Afrique',
+    'hero.subtitle': 'Acheter. Vendre. Embaucher. Apprendre. Le marché numérique pour l\'Afrique.',
+    'hero.description': 'Des textiles artisanaux aux produits de beauté biologiques - achetez des articles authentiques de vendeurs vérifiés à travers l\'Afrique et le Moyen-Orient.',
     'hero.getStarted': 'Commencer',
     'hero.exploreMarketplace': 'Explorer le Marché',
+    'hero.connecting': 'Connecter l\'Afrique et le Moyen-Orient',
+    'hero.shopNow': 'Acheter Maintenant',
+    'hero.sellWithUs': 'Commencer à Vendre',
+    
+    // Core Ecosystem Blocks
+    'ecosystem.work.title': 'Travail',
+    'ecosystem.work.subtitle': 'Embaucher des freelances',
+    'ecosystem.work.description': 'Trouvez des professionnels qualifiés pour vos projets à travers l\'Afrique et le Moyen-Orient',
+    'ecosystem.products.title': 'Produits',
+    'ecosystem.products.subtitle': 'Acheter des articles incroyables',
+    'ecosystem.products.description': 'Découvrez des produits africains authentiques de vendeurs vérifiés',
+    'ecosystem.network.title': 'Réseau',
+    'ecosystem.network.subtitle': 'Connexions d\'affaires',
+    'ecosystem.network.description': 'Connectez-vous avec des commerçants, des distributeurs et des partenaires commerciaux',
+    'ecosystem.learn.title': 'Apprendre',
+    'ecosystem.learn.subtitle': 'Développez vos compétences',
+    'ecosystem.learn.description': 'Accédez à des micro-cours et à du contenu éducatif',
+    
+    // User Types
+    'userTypes.buyer': 'Acheteur',
+    'userTypes.seller': 'Vendeur',
+    'userTypes.freelancer': 'Freelance',
+    'userTypes.client': 'Client',
+    'userTypes.producer': 'Producteur',
+    'userTypes.distributor': 'Distributeur',
+    'userTypes.learner': 'Apprenant',
+    'userTypes.educator': 'Éducateur',
+    
+    // Trust & Security
+    'trust.verified': 'Vérifié',
+    'trust.sslSecured': 'Sécurisé par SSL',
+    'trust.trustedVendor': 'Vendeur de confiance',
+    'trust.verifiedSeller': 'Vendeur vérifié',
+    'trust.verifiedUser': 'Utilisateur vérifié',
+    
+    // Main page
+    'hero.title2': 'Découvrez d\'incroyables',
+    'hero.titleHighlight': 'Produits Africains',
+    'hero.subtitle2': 'Des textiles artisanaux aux produits de beauté biologiques - achetez des articles authentiques de vendeurs vérifiés à travers l\'Afrique et le Moyen-Orient.',
+    // hero.connecting, hero.shopNow, hero.sellWithUs, hero.getStarted, and hero.exploreMarketplace are already defined above
     
     // Products
     'products.featured': 'Produits en Vedette',
@@ -184,15 +289,52 @@ const translations = {
     'nav.signOut': 'Sair',
     'nav.joinZantra': 'Juntar-se à Zantra',
     
-    // Main page
-    'hero.connecting': 'Conectando África e Médio Oriente',
-    'hero.title': 'Descubra Incríveis',
-    'hero.titleHighlight': 'Produtos Africanos',
-    'hero.subtitle': 'De têxteis artesanais a produtos de beleza orgânicos - compre itens autênticos de vendedores verificados através de África e Médio Oriente.',
-    'hero.shopNow': 'Comprar Agora',
-    'hero.sellWithUs': 'Começar a Vender',
+    // Hero Section
+    'hero.title': 'O principal mercado digital da África',
+    'hero.subtitle': 'Comprar. Vender. Contratar. Aprender. O mercado digital para a África.',
+    'hero.description': 'De têxteis artesanais a produtos de beleza orgânicos - compre itens autênticos de vendedores verificados através de África e Médio Oriente.',
     'hero.getStarted': 'Começar',
     'hero.exploreMarketplace': 'Explorar Mercado',
+    'hero.connecting': 'Conectando África e Médio Oriente',
+    'hero.shopNow': 'Comprar Agora',
+    'hero.sellWithUs': 'Começar a Vender',
+    
+    // Core Ecosystem Blocks
+    'ecosystem.work.title': 'Trabalho',
+    'ecosystem.work.subtitle': 'Contratar Freelancers',
+    'ecosystem.work.description': 'Encontre profissionais qualificados para seus projetos através de África e Médio Oriente',
+    'ecosystem.products.title': 'Produtos',
+    'ecosystem.products.subtitle': 'Compre Itens Incríveis',
+    'ecosystem.products.description': 'Descubra produtos africanos autênticos de vendedores verificados',
+    'ecosystem.network.title': 'Rede',
+    'ecosystem.network.subtitle': 'Conexões de Negócios',
+    'ecosystem.network.description': 'Conecte-se com comerciantes, distribuidores e parceiros de negócios',
+    'ecosystem.learn.title': 'Aprender',
+    'ecosystem.learn.subtitle': 'Desenvolva suas Habilidades',
+    'ecosystem.learn.description': 'Acesse micro-cursos e conteúdo educacional',
+    
+    // User Types
+    'userTypes.buyer': 'Comprador',
+    'userTypes.seller': 'Vendedor',
+    'userTypes.freelancer': 'Freelancer',
+    'userTypes.client': 'Cliente',
+    'userTypes.producer': 'Produtor',
+    'userTypes.distributor': 'Distribuidor',
+    'userTypes.learner': 'Aprendiz',
+    'userTypes.educator': 'Educador',
+    
+    // Trust & Security
+    'trust.verified': 'Verificado',
+    'trust.sslSecured': 'Protegido por SSL',
+    'trust.trustedVendor': 'Vendedor de Confiança',
+    'trust.verifiedSeller': 'Vendedor Verificado',
+    'trust.verifiedUser': 'Usuário Verificado',
+    
+    // Main page
+    'hero.title2': 'Descubra Incríveis',
+    'hero.titleHighlight': 'Produtos Africanos',
+    'hero.subtitle2': 'De têxteis artesanais a produtos de beleza orgânicos - compre itens autênticos de vendedores verificados através de África e Médio Oriente.',
+    // Note: hero.connecting, hero.shopNow, hero.sellWithUs, hero.getStarted, and hero.exploreMarketplace are already defined above
     
     // Products
     'products.featured': 'Produtos em Destaque',
@@ -237,15 +379,52 @@ const translations = {
     'nav.signOut': 'Toka',
     'nav.joinZantra': 'Jiunge na Zantra',
     
-    // Main page
+    // Hero Section
+    'hero.title': 'Soko Kuu la Kidijitali la Afrika',
+    'hero.subtitle': 'Nunua. Uza. Ajiri. Jifunze. Soko la Kidijitali kwa Afrika.',
+    'hero.description': 'Kutoka vitambaa vya mikono hadi bidhaa za urembo wa asili - nunua vitu halisi kutoka kwa wauzaji walioidhinishwa kote Afrika na Mashariki ya Kati.',
+    'hero.getStarted': 'Anza Sasa',
+    'hero.exploreMarketplace': 'Chunguza Soko',
     'hero.connecting': 'Kuunganisha Afrika na Mashariki ya Kati',
-    'hero.title': 'Gundua',
-    'hero.titleHighlight': 'Bidhaa za Kiafrika',
-    'hero.subtitle': 'Kutoka vitambaa vya mikono hadi bidhaa za urembo wa asili - nunua vitu halisi kutoka kwa wauzaji walioidhinishwa kote Afrika na Mashariki ya Kati.',
     'hero.shopNow': 'Nunua Sasa',
     'hero.sellWithUs': 'Anza Kuuza',
-    'hero.getStarted': 'Anza',
-    'hero.exploreMarketplace': 'Chunguza Soko',
+    
+    // Core Ecosystem Blocks
+    'ecosystem.work.title': 'Kazi',
+    'ecosystem.work.subtitle': 'Ajiri Wajiriwa Huru',
+    'ecosystem.work.description': 'Pata wataalamu wenye ujuzi kwa ajili ya المشاريع yako kote Afrika na Mashariki ya Kati',
+    'ecosystem.products.title': 'Bidhaa',
+    'ecosystem.products.subtitle': 'Nunua Vitu vya Kuvutia',
+    'ecosystem.products.description': 'Gundua bidhaa halisi za Kiafrika kutoka kwa wauzaji walioidhinishwa',
+    'ecosystem.network.title': 'Mtandao',
+    'ecosystem.network.subtitle': 'Mawasiliano ya Kibiashara',
+    'ecosystem.network.description': 'Unganisha na wafanyabiashara, wasambazaji, na washirika wa biashara',
+    'ecosystem.learn.title': 'Jifunze',
+    'ecosystem.learn.subtitle': 'Panua Ujuzi Wako',
+    'ecosystem.learn.description': 'Fikia kozi ndogo na maudhui ya kielimu',
+    
+    // User Types
+    'userTypes.buyer': 'Mnunuzi',
+    'userTypes.seller': 'Muuza',
+    'userTypes.freelancer': 'Mtu Huru',
+    'userTypes.client': 'Mteja',
+    'userTypes.producer': 'Mtengenezaji',
+    'userTypes.distributor': 'Msimbo',
+    'userTypes.learner': 'Mwanafunzi',
+    'userTypes.educator': 'Mwalimu',
+    
+    // Trust & Security
+    'trust.verified': 'Imethibitishwa',
+    'trust.sslSecured': 'Iliyo Salama na SSL',
+    'trust.trustedVendor': 'Muuza Anayeaminika',
+    'trust.verifiedSeller': 'Muuza Aliyehakikishwa',
+    'trust.verifiedUser': 'Mtumiaji Aliyehakikishwa',
+    
+    // Main page
+    'hero.title2': 'Gundua',
+    'hero.titleHighlight': 'Bidhaa za Kiafrika',
+    'hero.subtitle2': 'Kutoka vitambaa vya mikono hadi bidhaa za urembo wa asili - nunua vitu halisi kutoka kwa wauzaji walioidhinishwa kote Afrika na Mashariki ya Kati.',
+    // Note: hero.shopNow, hero.sellWithUs, hero.getStarted, and hero.exploreMarketplace are already defined above
     
     // Products
     'products.featured': 'Bidhaa Maalum',

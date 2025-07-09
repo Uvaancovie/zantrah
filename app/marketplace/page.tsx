@@ -18,6 +18,12 @@ interface Product {
     location: string
     email: string
     phone: string
+    trustLevel?: "basic" | "pro" | "elite"
+    trustBadge?: {
+      label: string
+      icon: string
+      color: string
+    }
   }
   rating: number
   reviews: number
@@ -50,6 +56,12 @@ export default function MarketplacePage() {
         location: "Accra, Ghana",
         email: "info@akosua-textiles.com",
         phone: "+233 24 123 4567",
+        trustLevel: "elite",
+        trustBadge: {
+          label: "Trusted Vendor",
+          icon: "🔵",
+          color: "blue",
+        },
       },
       rating: 4.8,
       reviews: 124,
@@ -68,6 +80,12 @@ export default function MarketplacePage() {
         location: "Marrakech, Morocco",
         email: "contact@atlasbeauty.ma",
         phone: "+212 661 234 567",
+        trustLevel: "pro",
+        trustBadge: {
+          label: "Verified Seller",
+          icon: "🟢",
+          color: "green",
+        },
       },
       rating: 4.9,
       reviews: 89,
@@ -85,6 +103,12 @@ export default function MarketplacePage() {
         location: "Nairobi, Kenya",
         email: "orders@nairobicrafts.ke",
         phone: "+254 722 345 678",
+        trustLevel: "basic",
+        trustBadge: {
+          label: "Verified User",
+          icon: "🟡",
+          color: "yellow",
+        },
       },
       rating: 4.7,
       reviews: 156,
@@ -103,6 +127,12 @@ export default function MarketplacePage() {
         location: "Addis Ababa, Ethiopia",
         email: "hello@highlandroasters.et",
         phone: "+251 911 234 567",
+        trustLevel: "pro",
+        trustBadge: {
+          label: "Verified Seller",
+          icon: "🟢",
+          color: "green",
+        },
       },
       rating: 4.9,
       reviews: 203,
@@ -121,6 +151,12 @@ export default function MarketplacePage() {
         location: "Cape Town, South Africa",
         email: "info@savannanaturals.co.za",
         phone: "+27 82 345 6789",
+        trustLevel: "elite",
+        trustBadge: {
+          label: "Trusted Vendor",
+          icon: "🔵",
+          color: "blue",
+        },
       },
       rating: 4.6,
       reviews: 78,
@@ -138,6 +174,12 @@ export default function MarketplacePage() {
         location: "Lagos, Nigeria",
         email: "style@lagosfashion.ng",
         phone: "+234 803 456 7890",
+        trustLevel: "basic",
+        trustBadge: {
+          label: "Verified User",
+          icon: "🟡",
+          color: "yellow",
+        },
       },
       rating: 4.8,
       reviews: 92,
@@ -155,6 +197,12 @@ export default function MarketplacePage() {
         location: "Fez, Morocco",
         email: "orders@fezpottery.ma",
         phone: "+212 535 123 456",
+        trustLevel: "pro",
+        trustBadge: {
+          label: "Verified Seller",
+          icon: "🟢",
+          color: "green",
+        },
       },
       rating: 4.7,
       reviews: 67,
@@ -172,6 +220,12 @@ export default function MarketplacePage() {
         location: "Ouagadougou, Burkina Faso",
         email: "contact@burkinanaturals.bf",
         phone: "+226 70 123 456",
+        trustLevel: "basic",
+        trustBadge: {
+          label: "Verified User",
+          icon: "🟡",
+          color: "yellow",
+        },
       },
       rating: 4.5,
       reviews: 234,
@@ -189,18 +243,16 @@ export default function MarketplacePage() {
     return matchesSearch && matchesCategory
   })
 
-  const handleContactVendor = async (e: React.FormEvent) => {
+  const handleContactVendor = (e: React.FormEvent) => {
     e.preventDefault()
-
     // Simulate sending message
     toast({
-      title: "Message Sent!",
-      description: `Your message has been sent to ${selectedProduct?.vendor.name}. They will contact you soon.`,
-      variant: "success",
+      title: "Message Sent",
+      description: `Your message has been sent to ${selectedProduct?.vendor.name}`,
+      variant: "default",
     })
-
-    setContactForm({ name: "", email: "", message: "" })
     setSelectedProduct(null)
+    setContactForm({ name: "", email: "", message: "" })
   }
 
   return (
@@ -280,6 +332,14 @@ export default function MarketplacePage() {
                     </div>
                   </div>
 
+                  {/* Trust Badge */}
+                  {product.vendor.trustBadge && (
+                    <div className={`flex items-center mb-2 px-2 py-1 rounded-full text-xs font-medium bg-${product.vendor.trustBadge.color}-100 text-${product.vendor.trustBadge.color}-600 border border-${product.vendor.trustBadge.color}-200 w-fit`}>
+                      <span className="mr-1">{product.vendor.trustBadge.icon}</span>
+                      {product.vendor.trustBadge.label}
+                    </div>
+                  )}
+
                   <h3 className="font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors">
                     {product.name}
                   </h3>
@@ -330,6 +390,14 @@ export default function MarketplacePage() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Contact Vendor</h3>
               <p className="text-gray-600">Get in touch with {selectedProduct.vendor.name}</p>
+              
+              {/* Trust Badge in Modal */}
+              {selectedProduct.vendor.trustBadge && (
+                <div className={`inline-flex items-center mt-2 px-3 py-1 rounded-full text-sm font-medium bg-${selectedProduct.vendor.trustBadge.color}-100 text-${selectedProduct.vendor.trustBadge.color}-600 border border-${selectedProduct.vendor.trustBadge.color}-200`}>
+                  <span className="mr-1">{selectedProduct.vendor.trustBadge.icon}</span>
+                  {selectedProduct.vendor.trustBadge.label}
+                </div>
+              )}
             </div>
 
             <div className="bg-gray-50 rounded-lg p-4 mb-6">

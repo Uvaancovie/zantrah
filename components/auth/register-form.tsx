@@ -2,16 +2,19 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase/client"
-import { ArrowRight, User, Store, Briefcase, GraduationCap } from "lucide-react"
+import { ArrowRight, User, Store, Briefcase, GraduationCap, Shield, Lock, Eye, EyeOff, Check, X, Users, UserCheck } from "lucide-react"
 
-type UserRole = "customer" | "small_business" | "entrepreneur" | "student" | "corporation"
+type UserRole = "buyer" | "seller" | "freelancer" | "client" | "producer" | "distributor" | "learner" | "educator" | "student" | "corporation"
 
 export default function RegisterForm() {
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(null)
+  const [step, setStep] = useState(1) // 1: Role selection, 2: Form details
+  const [showPassword, setShowPassword] = useState(false)
+  const [passwordStrength, setPasswordStrength] = useState(0)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,32 +23,87 @@ export default function RegisterForm() {
     lastName: "",
     country: "",
     phone: "",
+    businessName: "",
+    businessType: "",
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // Check URL params for role
+  useEffect(() => {
+    const roleParam = searchParams.get('role') as UserRole
+    if (roleParam && ['buyer', 'seller', 'freelancer', 'client', 'producer', 'distributor', 'learner', 'educator'].includes(roleParam)) {
+      setSelectedRole(roleParam)
+      setStep(2)
+    }
+  }, [searchParams])
 
   const roles = [
     {
-      id: "customer" as UserRole,
-      title: "Customer",
-      description: "Shop products from across Africa",
+      id: "buyer" as UserRole,
+      title: "Buyer",
+      description: "Shop amazing products from across Africa",
       icon: User,
-      color: "orange",
+      color: "blue",
+      badge: "🛍️ Shop",
     },
     {
-      id: "small_business" as UserRole,
-      title: "Small Business",
-      description: "Sell products online - R29.99/month",
+      id: "seller" as UserRole,
+      title: "Seller",
+      description: "Sell your products to customers worldwide",
       icon: Store,
       color: "orange",
+      badge: "💼 Sell",
     },
     {
-      id: "entrepreneur" as UserRole,
-      title: "Entrepreneur",
-      description: "Advanced business features - R69.99/month",
+      id: "freelancer" as UserRole,
+      title: "Freelancer",
+      description: "Offer your skills and services",
+      icon: UserCheck,
+      color: "green",
+      badge: "💻 Work",
+    },
+    {
+      id: "client" as UserRole,
+      title: "Client",
+      description: "Hire talented professionals for projects",
       icon: Briefcase,
-      color: "orange",
+      color: "purple",
+      badge: "🤝 Hire",
+    },
+    {
+      id: "producer" as UserRole,
+      title: "Producer",
+      description: "Manufacture and distribute products",
+      icon: Store,
+      color: "indigo",
+      badge: "🏭 Produce",
+    },
+    {
+      id: "distributor" as UserRole,
+      title: "Distributor",
+      description: "Connect producers with retailers",
+      icon: Briefcase,
+      color: "teal",
+      badge: "🚚 Distribute",
+    },
+    {
+      id: "learner" as UserRole,
+      title: "Learner",
+      description: "Access courses and skill development",
+      icon: GraduationCap,
+      color: "pink",
+      badge: "🎓 Learn",
+    },
+    {
+      id: "educator" as UserRole,
+      title: "Educator",
+      description: "Teach and create educational content",
+      icon: GraduationCap,
+      color: "yellow",
+      badge: "📚 Teach",
     },
     {
       id: "student" as UserRole,
@@ -53,6 +111,7 @@ export default function RegisterForm() {
       description: "Find jobs and apprenticeships - Free",
       icon: GraduationCap,
       color: "orange",
+      badge: "🧠 Learn",
     },
     {
       id: "corporation" as UserRole,
@@ -60,7 +119,8 @@ export default function RegisterForm() {
       description: "Post jobs and find talent",
       icon: Briefcase,
       color: "orange",
-    },
+      badge: "🏢 Hire",
+    }
   ]
 
   const countries = [
@@ -176,7 +236,7 @@ export default function RegisterForm() {
       console.log("Registration completed successfully")
 
       // Redirect based on role
-      if (selectedRole === "customer") {
+      if (selectedRole === "buyer") {
         router.push("/marketplace")
       } else {
         router.push(`/verification-welcome?role=${selectedRole}&email=${formData.email}`)

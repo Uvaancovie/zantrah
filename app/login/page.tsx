@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 
-const LoginForm = dynamic(() => import("@/components/auth/login-form"), {
+const LoginFormEnhanced = dynamic(() => import("@/components/auth/login-form-enhanced"), {
   loading: () => <div>Loading...</div>,
   ssr: false,
 });
 
 export default function LoginPage() {
-  return <LoginForm />;
+  return <LoginFormEnhanced />;
 }

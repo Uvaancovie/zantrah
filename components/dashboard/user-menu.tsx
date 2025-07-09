@@ -8,7 +8,8 @@ import { User, Settings, LogOut, Shield, CheckCircle, Clock, AlertCircle, X } fr
 
 export default function UserMenu() {
   const { user, profile, signOut, isAuthenticated } = useAuth()
-  const { verificationRequest, verificationStatus } = useVerification()
+  const { verificationRequest } = useVerification()
+  const verificationStatus = verificationRequest?.status || "none"
   const [showMenu, setShowMenu] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
 
@@ -44,7 +45,7 @@ export default function UserMenu() {
           </div>
           <div className="text-left">
             <div className="text-white text-sm font-medium">
-              {profile?.first_name} {profile?.last_name}
+              {profile?.firstName} {profile?.lastName}
             </div>
             <div className="flex items-center">
               <StatusIcon className={`w-3 h-3 ${statusInfo.color} mr-1`} />
@@ -102,7 +103,7 @@ export default function UserMenu() {
                 <User className="w-8 h-8 text-black" />
               </div>
               <h3 className="text-xl font-bold text-white">
-                {profile?.first_name} {profile?.last_name}
+                {profile?.firstName} {profile?.lastName}
               </h3>
               <p className="text-gray-400">{user?.email}</p>
             </div>

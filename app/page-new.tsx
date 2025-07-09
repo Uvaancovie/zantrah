@@ -11,28 +11,19 @@ import {
   MapPin,
   CheckCircle,
   Globe,
-  Truck,
-  CreditCard,
-  Star,
-  Heart,
-  GraduationCap,
-  Handshake,
   Shield,
   Lock,
-  TrendingUp,
-  Award,
+  GraduationCap,
+  Handshake,
   Eye,
   UserCheck,
-  MessageSquare,
 } from "lucide-react"
 import AuthPopup from "@/components/auth/auth-popup"
 import Navbar from "@/components/layout/navbar"
 import { useProfile } from "@/hooks/use-profile"
-import { useLanguage } from "@/context/LanguageContext"
 
-export default function EnhancedHome() {
+export default function Home() {
   const { hasProfile, profile } = useProfile()
-  const { t } = useLanguage()
   const [profilePopup, setProfilePopup] = useState<{ isOpen: boolean; redirectTo?: string }>({
     isOpen: false,
   })
@@ -49,9 +40,9 @@ export default function EnhancedHome() {
   const ecosystemBlocks = [
     {
       id: 'work',
-      title: t('ecosystem.work.title'),
-      subtitle: t('ecosystem.work.subtitle'),
-      description: t('ecosystem.work.description'),
+      title: 'Work 💼',
+      subtitle: 'Hire Freelancers',
+      description: 'Find skilled professionals for your projects across Africa and the Middle East',
       icon: Briefcase,
       gradient: 'from-blue-500 to-blue-700',
       href: '/marketplace?category=services',
@@ -59,9 +50,9 @@ export default function EnhancedHome() {
     },
     {
       id: 'products',
-      title: t('ecosystem.products.title'),
-      subtitle: t('ecosystem.products.subtitle'),
-      description: t('ecosystem.products.description'),
+      title: 'Products 🛍️',
+      subtitle: 'Shop Amazing Items',
+      description: 'Discover authentic African products from verified vendors',
       icon: ShoppingCart,
       gradient: 'from-orange-500 to-red-600',
       href: '/marketplace',
@@ -69,9 +60,9 @@ export default function EnhancedHome() {
     },
     {
       id: 'network',
-      title: t('ecosystem.network.title'),
-      subtitle: t('ecosystem.network.subtitle'),
-      description: t('ecosystem.network.description'),
+      title: 'Network 🤝',
+      subtitle: 'Business Connections',
+      description: 'Connect with traders, distributors, and business partners',
       icon: Handshake,
       gradient: 'from-green-500 to-emerald-600',
       href: '/marketplace?category=b2b',
@@ -79,9 +70,9 @@ export default function EnhancedHome() {
     },
     {
       id: 'learn',
-      title: t('ecosystem.learn.title'),
-      subtitle: t('ecosystem.learn.subtitle'),
-      description: t('ecosystem.learn.description'),
+      title: 'Learn 🎓',
+      subtitle: 'Grow Your Skills',
+      description: 'Access micro-courses and educational content',
       icon: GraduationCap,
       gradient: 'from-purple-500 to-indigo-600',
       href: '/marketplace?category=education',
@@ -99,66 +90,11 @@ export default function EnhancedHome() {
 
   // Trust indicators for professional appearance
   const trustIndicators = [
-    { label: t('trust.sslSecured'), icon: Lock },
-    { label: t('trust.verified'), icon: Shield },
+    { label: 'SSL Secured', icon: Lock },
+    { label: 'Verified', icon: Shield },
     { label: '10K+ Users', icon: Users },
     { label: '50+ Countries', icon: Globe },
   ]
-
-  // Featured products with vendor verification badges
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Handwoven Kente Cloth",
-      price: "R450",
-      originalPrice: "R600",
-      image: "https://images.unsplash.com/photo-1594736797933-d0fccafcce89?w=300&h=300&fit=crop&crop=center",
-      vendor: "Akosua Textiles",
-      location: "Ghana",
-      rating: 4.8,
-      reviews: 124,
-      category: "Fashion",
-      trustLevel: "elite", // elite, pro, basic
-      badge: t('trust.trustedVendor'),
-    },
-    {
-      id: 2,
-      name: "Organic Argan Oil",
-      price: "R280",
-      originalPrice: "R350",
-      image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=300&h=300&fit=crop&crop=center",
-      vendor: "Atlas Beauty",
-      location: "Morocco",
-      rating: 4.9,
-      reviews: 89,
-      category: "Beauty",
-      trustLevel: "pro",
-      badge: t('trust.verifiedSeller'),
-    },
-    {
-      id: 3,
-      name: "Maasai Beaded Jewelry",
-      price: "R320",
-      originalPrice: null,
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop&crop=center",
-      vendor: "Nairobi Crafts",
-      location: "Kenya",
-      rating: 4.7,
-      reviews: 156,
-      category: "Jewelry",
-      trustLevel: "basic",
-      badge: t('trust.verifiedUser'),
-    },
-  ]
-
-  const getTrustBadgeColor = (level: string) => {
-    switch (level) {
-      case 'elite': return 'bg-blue-500 text-white'
-      case 'pro': return 'bg-green-500 text-white'
-      case 'basic': return 'bg-yellow-500 text-black'
-      default: return 'bg-gray-500 text-white'
-    }
-  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -166,11 +102,6 @@ export default function EnhancedHome() {
 
       {/* Enhanced Hero Section with Clear Mission Statement */}
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-50">
-          <div className="h-full w-full bg-orange-500/5 bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.1)_0%,transparent_50%)]"></div>
-        </div>
-        
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             {/* Trust indicators banner */}
@@ -185,19 +116,19 @@ export default function EnhancedHome() {
 
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/10 text-orange-500 text-sm font-medium mb-8 border border-orange-500/20">
               <Globe className="w-4 h-4 mr-2" />
-              {t('hero.connecting')}
+              Connecting Africa & the Middle East
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              {t('hero.title')}
+              Africa's Premier Digital Marketplace
             </h1>
 
             <p className="text-2xl sm:text-3xl text-orange-500 font-bold mb-6">
-              {t('hero.subtitle')}
+              Buy. Sell. Hire. Learn. The Digital Marketplace for Africa.
             </p>
 
             <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              {t('hero.description')}
+              From handcrafted textiles to organic beauty products - shop authentic items from verified vendors across Africa and the Middle East.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -208,7 +139,7 @@ export default function EnhancedHome() {
                 className="group bg-orange-500 text-black px-8 py-4 rounded-xl text-lg font-bold hover:bg-orange-400 transition-all duration-200 flex items-center shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 <ShoppingCart className="mr-2 w-5 h-5" />
-                {t('hero.shopNow')}
+                Shop Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -217,7 +148,7 @@ export default function EnhancedHome() {
                 className="group border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-xl text-lg font-bold hover:bg-orange-500 hover:text-black transition-all flex items-center"
               >
                 <Store className="mr-2 w-5 h-5" />
-                {t('hero.sellWithUs')}
+                Start Selling
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -244,7 +175,6 @@ export default function EnhancedHome() {
                 href={block.href}
                 className="group relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
-                {/* Background image */}
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={block.image}
@@ -254,7 +184,6 @@ export default function EnhancedHome() {
                   <div className={`absolute inset-0 bg-gradient-to-t ${block.gradient} opacity-80 group-hover:opacity-90 transition-opacity`}></div>
                 </div>
 
-                {/* Content overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
                   <div className="mb-4">
                     <block.icon className="w-8 h-8 mb-2" />
@@ -296,132 +225,12 @@ export default function EnhancedHome() {
                 <div className={`w-16 h-16 ${type.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
                   <type.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{t(`userTypes.${type.key}`)}</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  {type.key.charAt(0).toUpperCase() + type.key.slice(1)}
+                </h3>
                 <div className="w-8 h-1 bg-orange-500 mx-auto opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products with Trust Badges */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              {t('products.featured')}
-            </h2>
-            <p className="text-xl text-gray-600">
-              Authentic products from verified vendors across Africa
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-              >
-                <div className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  
-                  {/* Trust badge */}
-                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold ${getTrustBadgeColor(product.trustLevel)} flex items-center`}>
-                    <Shield className="w-3 h-3 mr-1" />
-                    {product.badge}
-                  </div>
-
-                  <button className="absolute top-4 right-4 p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                    <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
-                  </button>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-orange-500 font-medium">{product.category}</span>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {product.location}
-                    </div>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{product.name}</h3>
-                  
-                  <div className="flex items-center mb-3">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm text-gray-600 ml-2">
-                      {product.rating} ({product.reviews} reviews)
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-2xl font-bold text-gray-900">{product.price}</span>
-                      {product.originalPrice && (
-                        <span className="text-sm text-gray-500 line-through ml-2">{product.originalPrice}</span>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-600">
-                      by <span className="font-medium text-gray-900">{product.vendor}</span>
-                    </div>
-                    <button className="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-600 transition-colors flex items-center">
-                      <ShoppingCart className="w-4 h-4 mr-1" />
-                      {t('products.addToCart')}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              href="/marketplace"
-              className="inline-flex items-center bg-black text-white px-8 py-3 rounded-lg text-lg font-bold hover:bg-gray-800 transition-colors"
-            >
-              View All Products
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section with Trust Indicators */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">10K+</div>
-              <div className="text-gray-300">Active Users</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">5K+</div>
-              <div className="text-gray-300">Products Listed</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">50+</div>
-              <div className="text-gray-300">Countries Served</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">98%</div>
-              <div className="text-gray-300">Satisfaction Rate</div>
-            </div>
           </div>
         </div>
       </section>
@@ -442,14 +251,14 @@ export default function EnhancedHome() {
               className="bg-white text-orange-500 px-8 py-4 rounded-xl text-lg font-bold hover:bg-gray-100 transition-colors flex items-center justify-center"
             >
               <UserCheck className="mr-2 w-5 h-5" />
-              {t('hero.getStarted')}
+              Get Started
             </button>
             <Link
               href="/marketplace"
               className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-orange-500 transition-colors flex items-center justify-center"
             >
               <Eye className="mr-2 w-5 h-5" />
-              {t('hero.exploreMarketplace')}
+              Explore Marketplace
             </Link>
           </div>
         </div>
