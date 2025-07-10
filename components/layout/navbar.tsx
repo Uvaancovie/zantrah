@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Menu, X, User, LogOut, Plus, ShoppingBag, Briefcase, Settings, Home, Globe } from "lucide-react"
 import { useProfile } from "@/hooks/use-profile"
@@ -57,8 +58,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <span className="text-2xl font-bold text-orange-500">Zantra</span>
+            <Link href="/" className="flex-shrink-0 flex items-center">
+              <Image 
+                src="/LOGO.jpg" 
+                alt="Zantra Logo" 
+                width={120} 
+                height={40} 
+                className="h-8 w-auto"
+                priority
+              />
             </Link>
 
             {/* Navigation items - always visible */}

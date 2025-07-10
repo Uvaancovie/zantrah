@@ -7,8 +7,52 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase/client"
 import { useProfile } from "@/hooks/use-profile"
 import { useToast } from "@/hooks/use-toast"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import Navbar from "@/components/layout/navbar"
-import { User, Mail, Phone, MapPin, Briefcase, Save, Shield, CheckCircle } from "lucide-react"
+import { 
+  User, Mail, Phone, MapPin, Briefcase, Save, Shield, 
+  CheckCircle, Upload, Building, CreditCard, FileText, 
+  Home, Image, GraduationCap
+} from "lucide-react"
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import {
+  phoneSchema,
+  emailSchema,
+  govIdSchema,
+  businessSchema,
+  addressSchema,
+  portfolioSchema,
+  paymentSchema,
+  studentSchema,
+  corporationSchema
+} from "@/lib/verification-schemas"
+import PhoneVerificationForm from "@/components/forms/PhoneVerificationForm"
+import EmailVerificationForm from "@/components/forms/EmailVerificationForm"
+import GovIdVerificationForm from "@/components/forms/GovIdVerificationForm"
+import BusinessVerificationForm from "@/components/forms/BusinessVerificationForm"
+import AddressVerificationForm from "@/components/forms/AddressVerificationForm"
+import PortfolioVerificationForm from "@/components/forms/PortfolioVerificationForm"
+import PaymentVerificationForm from "@/components/forms/PaymentVerificationForm"
+import StudentVerificationForm from "@/components/forms/StudentVerificationForm"
+import CorporationVerificationForm from "@/components/forms/CorporationVerificationForm"
+import { Button } from "@/components/ui/button"
 
 export default function ProfilePageEnhanced() {
   const { profile, hasProfile, saveProfile } = useProfile()
@@ -25,6 +69,32 @@ export default function ProfilePageEnhanced() {
     role: "",
   })
   
+  // For verification forms
+  type VerificationFormData = {
+    phone: z.infer<typeof phoneSchema>;
+    email: z.infer<typeof emailSchema>;
+    id: z.infer<typeof govIdSchema>;
+    business: z.infer<typeof businessSchema>;
+    address: z.infer<typeof addressSchema>;
+    portfolio: z.infer<typeof portfolioSchema>;
+    payment: z.infer<typeof paymentSchema>;
+    student: z.infer<typeof studentSchema>;
+    corporation: z.infer<typeof corporationSchema>;
+  }
+
+  const [selectedVerificationStep, setSelectedVerificationStep] = useState<string | null>(null)
+  const [verificationFormData, setVerificationFormData] = useState<VerificationFormData>({
+    phone: { phone: "" },
+    email: { email: "" },
+    id: { idType: "passport", idNumber: "", idFile: "" },
+    business: { businessName: "", businessType: "sole_proprietorship", registrationNumber: "", registrationFile: "" },
+    address: { addressLine1: "", addressLine2: "", city: "", state: "", postalCode: "", country: "", proofFile: "" },
+    portfolio: { portfolioDescription: "", portfolioItems: [{ title: "", description: "", image: "" }] },
+    payment: { accountName: "", bankName: "", accountNumber: "", swiftCode: "", routingNumber: "" },
+    student: { institutionName: "", studentId: "", program: "", graduationYear: new Date().getFullYear().toString(), studentIdCard: "", enrollmentProof: "" },
+    corporation: { companyName: "", registrationNumber: "", industry: "", companySize: "1-10", hiringCapacity: "1-5", website: "", companyLogo: "", businessLicense: "" }
+  })
+  
   // Vendor verification checklist
   const [verificationSteps, setVerificationSteps] = useState([
     { id: 'phone', label: 'Verify phone number', completed: false },
@@ -34,6 +104,8 @@ export default function ProfilePageEnhanced() {
     { id: 'address', label: 'Address verification', completed: false },
     { id: 'portfolio', label: 'Upload product portfolio', completed: false },
     { id: 'payment', label: 'Connect payment method', completed: false },
+    { id: 'student', label: 'Student verification', completed: false },
+    { id: 'corporation', label: 'Corporation hiring verification', completed: false },
   ])
 
   const countries = [
@@ -308,7 +380,7 @@ export default function ProfilePageEnhanced() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="font-medium text-orange-800">Your Current Status</h3>
-                      <p className="text-orange-600 text-sm">Basic Verification (1/7 steps completed)</p>
+                      <p className="text-orange-600 text-sm">Basic Verification (1/9 steps completed)</p>
                     </div>
                     <div className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium border border-yellow-200 flex items-center">
                       <span className="mr-1">🟡</span>
@@ -355,10 +427,233 @@ export default function ProfilePageEnhanced() {
                   </div>
                 </div>
                 
+                {/* Verification Forms with Accordion */}
+                <div className="mt-8">
+                  <h3 className="font-medium text-gray-900 mb-4">Complete Verification Steps</h3>
+                  
+                  <Accordion type="single" collapsible className="space-y-4">
+                    {/* Phone Verification Form */}
+                    <AccordionItem value="phone" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Phone className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Phone Verification</span>
+                          {verificationSteps[0].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <PhoneVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[0].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.phone}
+                          updateFormData={(data: z.infer<typeof phoneSchema>) => setVerificationFormData(prev => ({...prev, phone: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Email Verification Form */}
+                    <AccordionItem value="email" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Mail className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Email Verification</span>
+                          {verificationSteps[1].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <EmailVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[1].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.email}
+                          updateFormData={(data: z.infer<typeof emailSchema>) => setVerificationFormData(prev => ({...prev, email: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Government ID Verification Form */}
+                    <AccordionItem value="id" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <FileText className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Government ID Verification</span>
+                          {verificationSteps[2].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <GovIdVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[2].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.id}
+                          updateFormData={(data: z.infer<typeof govIdSchema>) => setVerificationFormData(prev => ({...prev, id: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Business Registration Form */}
+                    <AccordionItem value="business" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Building className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Business Registration</span>
+                          {verificationSteps[3].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <BusinessVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[3].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.business}
+                          updateFormData={(data: z.infer<typeof businessSchema>) => setVerificationFormData(prev => ({...prev, business: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Address Verification Form */}
+                    <AccordionItem value="address" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Home className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Address Verification</span>
+                          {verificationSteps[4].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <AddressVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[4].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.address}
+                          updateFormData={(data: z.infer<typeof addressSchema>) => setVerificationFormData(prev => ({...prev, address: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Portfolio Verification Form */}
+                    <AccordionItem value="portfolio" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Image className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Portfolio Verification</span>
+                          {verificationSteps[5].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <PortfolioVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[5].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.portfolio}
+                          updateFormData={(data: z.infer<typeof portfolioSchema>) => setVerificationFormData(prev => ({...prev, portfolio: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Payment Verification Form */}
+                    <AccordionItem value="payment" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <CreditCard className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Payment Method</span>
+                          {verificationSteps[6].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <PaymentVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[6].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.payment}
+                          updateFormData={(data: z.infer<typeof paymentSchema>) => setVerificationFormData(prev => ({...prev, payment: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Student Verification Form */}
+                    <AccordionItem value="student" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <GraduationCap className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Student Verification</span>
+                          {verificationSteps[7].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <StudentVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[7].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.student}
+                          updateFormData={(data: z.infer<typeof studentSchema>) => setVerificationFormData(prev => ({...prev, student: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Corporation Verification Form */}
+                    <AccordionItem value="corporation" className="border rounded-lg overflow-hidden">
+                      <AccordionTrigger className="px-4 py-3 bg-gray-50 hover:no-underline hover:bg-gray-100">
+                        <div className="flex items-center">
+                          <Briefcase className="w-5 h-5 mr-3 text-orange-500" />
+                          <span className="font-medium">Corporation Hiring Verification</span>
+                          {verificationSteps[8].completed && (
+                            <CheckCircle className="w-4 h-4 ml-2 text-green-500" />
+                          )}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-4 py-3">
+                        <CorporationVerificationForm 
+                          setCompleted={(completed: boolean) => {
+                            const updatedSteps = [...verificationSteps];
+                            updatedSteps[8].completed = completed;
+                            setVerificationSteps(updatedSteps);
+                          }}
+                          initialData={verificationFormData.corporation}
+                          updateFormData={(data: z.infer<typeof corporationSchema>) => setVerificationFormData(prev => ({...prev, corporation: data}))}
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+
                 {/* Next Steps */}
                 <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
                   <h3 className="font-medium text-blue-800 mb-2">Upgrade Your Vendor Status</h3>
-                  <p className="text-blue-600 text-sm mb-4">Complete at least 3 verification steps to become a Verified Seller and 6 steps for Trusted Vendor status.</p>
+                  <p className="text-blue-600 text-sm mb-4">Complete at least 3 verification steps to become a Verified Seller and 6 steps for Trusted Vendor status. Students can gain special access by completing student verification, and corporations can access talent by completing corporation verification.</p>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600">
                     Learn More About Verification
                   </button>

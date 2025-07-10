@@ -50,7 +50,7 @@ export default function MarketplacePage() {
       name: "Handwoven Kente Cloth",
       price: "R450",
       originalPrice: "R600",
-      image: "https://images.unsplash.com/photo-1594736797933-d0fccafcce89?w=300&h=300&fit=crop&crop=center",
+      image: "https://images.pexels.com/photos/6850751/pexels-photo-6850751.jpeg",
       vendor: {
         name: "Akosua Textiles",
         location: "Accra, Ghana",
@@ -74,7 +74,7 @@ export default function MarketplacePage() {
       name: "Organic Argan Oil",
       price: "R280",
       originalPrice: "R350",
-      image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=300&h=300&fit=crop&crop=center",
+      image: "https://images.pexels.com/photos/10110225/pexels-photo-10110225.jpeg",
       vendor: {
         name: "Atlas Beauty",
         location: "Marrakech, Morocco",
@@ -262,7 +262,7 @@ export default function MarketplacePage() {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Zantra Marketplace</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Zantrah Marketplace</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Discover authentic products from verified vendors across Africa and the Middle East
             </p>
