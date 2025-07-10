@@ -116,7 +116,7 @@ export default function Home() {
 
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/10 text-orange-500 text-sm font-medium mb-8 border border-orange-500/20">
               <Globe className="w-4 h-4 mr-2" />
-              Connecting Africa & the Middle East
+              Connecting Africa 
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
